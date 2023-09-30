@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import './index.css';
 import Chart from 'chart.js/auto';
 
+
 function App() {
   const barChartRef = useRef(null);
   const pieChartRef = useRef(null);
@@ -70,26 +71,26 @@ function App() {
     },
     {
       profileImage: 'profile2.jpg',
-      username: 'User2',
-      text: 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.',
+      username: 'Carlos',
+      text: 'Ideias sobre tratamentos.',
       likes: 5,
     },
     {
       profileImage: 'profile3.jpg',
-      username: 'User3',
-      text: 'Novo post do terceiro usuário.',
+      username: 'Iara',
+      text: 'Novas pesquisas sobre vacinas.',
       likes: 3,
     },
     {
       profileImage: 'profile4.jpg',
-      username: 'User4',
-      text: 'Mais um post interessante.',
+      username: 'Camila',
+      text: 'Desenvolvimento de remédios',
       likes: 8,
     },
     {
       profileImage: 'profile5.jpg',
-      username: 'User5',
-      text: 'Último post do exemplo.',
+      username: 'Pablo',
+      text: 'Máquinas cirúrgicas',
       likes: 12,
     },
   ];
@@ -104,13 +105,13 @@ function App() {
           <button className="qr-code-button">QR Code</button>
           <div className="icons">
             <div className="icon">
-              <img src="hat-icon.png" alt="Hat Icon" />
+              <img src="hat_icon.svg" alt="Estudos" />
             </div>
             <div className="icon">
-              <img src="chat-icon.png" alt="Chat Icon" />
+              <img src="chat-icon.png" alt="Fórum" />
             </div>
             <div className="icon">
-              <img src="internet-icon.png" alt="Internet Icon" />
+              <img src="internet-icon.png" alt="Pesquisas" />
             </div>
           </div>
         </div>
@@ -123,27 +124,28 @@ function App() {
           </div>
           <div className="action-buttons">
             <button className="notification-button">Notificações</button>
-            <button className="settings-button">Engrenagem</button>
+            <button className="settings-button">Configurações</button>
+            <button className="logout-button">Sair</button>
           </div>
         </header>
         <section className="overview">
           <h2>Visão Geral</h2>
           <div className="overview-blocks">
             <div className="overview-block">
-              <h3>Título do Bloco 1</h3>
-              <p>123</p>
+              <h3>Pesquisas em progresso</h3>
+              <p>3</p>
             </div>
             <div className="overview-block">
-              <h3>Título do Bloco 2</h3>
-              <p>456</p>
+              <h3>Tópicos abertos</h3>
+              <p>7</p>
             </div>
             <div className="overview-block">
-              <h3>Título do Bloco 3</h3>
-              <p>789</p>
+              <h3>Tempo gasto</h3>
+              <p>3h 15m</p>
             </div>
             <div className="overview-block">
-              <h3>Título do Bloco 4</h3>
-              <p>987</p>
+              <h3>Pontuação da comunidade</h3>
+              <p>240</p>
             </div>
           </div>
           <div className="weekly-usage">
@@ -232,6 +234,7 @@ function App() {
           </div>
         </div>
 
+{/* iniciando a modificação*/}
         {/* Rodapé estilizado */}
         <footer className="footer">
           <p>&copy; 2023 Health Book. Todos os direitos reservados.</p>
