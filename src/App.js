@@ -1,15 +1,43 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './index.css';
 import Chart from 'chart.js/auto';
-
+import FHIR from 'fhirclient';
 
 function App() {
   const barChartRef = useRef(null);
   const pieChartRef = useRef(null);
 
   useEffect(() => {
-    const barChartCtx = barChartRef.current.getContext('2d');
-    const pieChartCtx = pieChartRef.current.getContext('2d');
+    // Função para buscar recursos FHIR (pacientes)
+    const fetchFhirPatients = async () => {
+      try {
+        const client = FHIR.oauth2({
+          clientId: 'c50b504a-0eea-448f-95df-ef4a677e6376',
+          scope: 'patient/*.read', // Escopo de leitura do paciente, ajuste conforme necessário
+          redirectUri: 'https://login.microsoftonline.com/4b66a893-ae4c-43b4-8459-c7ae89b2ec0e/oauth2/token',
+        });
+
+        const patientBundle = await client.request(client.patient.apiEndpoint + '/Patient');
+
+        // Exemplo de como acessar os recursos FHIR (pacientes)
+        const patients = patientBundle.entry.map((entry) => entry.resource);
+        setPatients(patients);
+
+        // Resto do seu código para processar e exibir os dados
+        // ...
+      } catch (error) {
+        console.error('Erro ao buscar pacientes FHIR', error);
+      }
+    };
+
+    fetchFhirPatients();
+  }, []);
+
+  const [patients, setPatients] = useState([]); // Mova esta linha para fora do useEffect
+
+  useEffect(() => {
+    const barChartCtx = barChartRef.current?.getContext('2d');
+    const pieChartCtx = pieChartRef.current?.getContext('2d');
 
     // Destrói gráficos anteriores se existirem
     if (window.barChartInstance) {
@@ -105,7 +133,7 @@ function App() {
           <button className="qr-code-button">QR Code</button>
           <div className="icons">
             <div className="icon">
-              <img src="hat_icon.svg" alt="Estudos" />
+              <img src=".img/hat-icon.jpg" alt="Estudos" />
             </div>
             <div className="icon">
               <img src="chat-icon.png" alt="Fórum" />
@@ -118,13 +146,14 @@ function App() {
       </aside>
       <main className="main-content">
         <header className="header">
-          <h1>Início</h1>
+          <h1>Estudos</h1>
           <div className="search-bar">
             <input type="text" placeholder="Pesquisar..." />
           </div>
           <div className="action-buttons">
             <button className="notification-button">Notificações</button>
             <button className="settings-button">Configurações</button>
+           
             <button className="logout-button">Sair</button>
           </div>
         </header>
@@ -141,7 +170,7 @@ function App() {
             </div>
             <div className="overview-block">
               <h3>Tempo gasto</h3>
-              <p>3h 15m</p>
+              <p>14h 18m</p>
             </div>
             <div className="overview-block">
               <h3>Pontuação da comunidade</h3>
@@ -234,7 +263,21 @@ function App() {
           </div>
         </div>
 
-{/* iniciando a modificação*/}
+              
+       {/* Exiba os pacientes recuperados como uma lista */}
+       <section className="fhir-data">
+       <h2>Lista de Pacientes para estudo</h2>
+       <ul>
+         {patients.map((patient) => (
+           <li key={patient.id}>
+             <strong>Nome:</strong> {patient.name?.[0]?.given?.[0]} {patient.name?.[0]?.family}<br />
+             <strong>Data de Nascimento:</strong> {patient.birthDate}<br />
+             <strong>Gênero:</strong> {patient.gender}<br />
+             <strong>ID do Paciente:</strong> {patient.id}
+           </li>
+         ))}
+       </ul>
+     </section>
         {/* Rodapé estilizado */}
         <footer className="footer">
           <p>&copy; 2023 Health Book. Todos os direitos reservados.</p>
@@ -242,6 +285,6 @@ function App() {
       </main>
     </div>
   );
-}
+}   
 
 export default App;
