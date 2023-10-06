@@ -2,6 +2,11 @@ import React, { useEffect, useRef, useState } from 'react';
 import './index.css';
 import Chart from 'chart.js/auto';
 import FHIR from 'fhirclient';
+import Logo from "./img/hat-icon.png"
+import Logo2 from "./img/forum-icon.png"
+import Logo3 from "./img/search-icon.png"
+import profileImage from "./img/profile3.jpg"
+
 
 function App() {
   const barChartRef = useRef(null);
@@ -23,7 +28,7 @@ function App() {
         const patients = patientBundle.entry.map((entry) => entry.resource);
         setPatients(patients);
 
-        // Resto do seu código para processar e exibir os dados
+        // Resto do código para processar e exibir os dados
         // ...
       } catch (error) {
         console.error('Erro ao buscar pacientes FHIR', error);
@@ -33,7 +38,7 @@ function App() {
     fetchFhirPatients();
   }, []);
 
-  const [patients, setPatients] = useState([]); // Mova esta linha para fora do useEffect
+  const [patients, setPatients] = useState([]); // Mova essa linha para fora do useEffect
 
   useEffect(() => {
     const barChartCtx = barChartRef.current?.getContext('2d');
@@ -124,7 +129,7 @@ function App() {
   ];
 
   return (
-    <div className="App">
+      <div className="App">
       <aside className="sidebar">
         <div className="logo">
           <h2>HEALTH BOOK</h2>
@@ -133,13 +138,16 @@ function App() {
           <button className="qr-code-button">QR Code</button>
           <div className="icons">
             <div className="icon">
-              <img src=".img/hat-icon.jpg" alt="Estudos" />
+              <button className='hat-icon-button'>
+                <img src={Logo} alt="Estudos" title='Estudos' /></button>              
             </div>
             <div className="icon">
-              <img src="chat-icon.png" alt="Fórum" />
+            <button className='forum-icon-button'>
+                <img src={Logo2} alt="Fórum" title='Fórum' /></button>
             </div>
             <div className="icon">
-              <img src="internet-icon.png" alt="Pesquisas" />
+            <button className='search-icon-button'>
+                <img src={Logo3} alt="Fórum" title='Fórum' /></button>
             </div>
           </div>
         </div>
@@ -200,7 +208,7 @@ function App() {
 
         {/* Barra de pesquisa e botão "Meus tópicos" */}
         <div className="forum">
-          <h2>Forum</h2>
+          <h2>Fórum</h2>
           <div className="search-bar">
             <input type="text" placeholder="Pesquisar tópicos..." />
             <button>Meus tópicos</button>
@@ -218,72 +226,15 @@ function App() {
           </div>
         ))}
 
-        {/* Seção "Videos de Apoio" */}
-        <div className="quebra-pagina">
-          <hr />
-          <h2>Videos de Apoio</h2>
-          <div className="video-fileiras">
-            {/* Aqui você pode adicionar as fileiras de vídeos */}
-            {/* Cada fileira deve conter três vídeos */}
-            <div className="video-fileira">
-              <div className="video">
-                <a href="https://www.youtube.com/link_do_video1" target="_blank" rel="noopener noreferrer">
-                  <img src="video1.jpg" alt="Video 1" />
-                </a>
-              </div>
-              <div className="video">
-                <a href="https://www.youtube.com/link_do_video2" target="_blank" rel="noopener noreferrer">
-                  <img src="video2.jpg" alt="Video 2" />
-                </a>
-              </div>
-              <div className="video">
-                <a href="https://www.youtube.com/link_do_video3" target="_blank" rel="noopener noreferrer">
-                  <img src="video3.jpg" alt="Video 3" />
-                </a>
-              </div>
-            </div>
-            <div className="video-fileira">
-              <div className="video">
-                <a href="https://www.youtube.com/link_do_video1" target="_blank" rel="noopener noreferrer">
-                  <img src="video1.jpg" alt="Video 1" />
-                </a>
-              </div>
-              <div className="video">
-                <a href="https://www.youtube.com/link_do_video2" target="_blank" rel="noopener noreferrer">
-                  <img src="video2.jpg" alt="Video 2" />
-                </a>
-              </div>
-              <div className="video">
-                <a href="https://www.youtube.com/link_do_video3" target="_blank" rel="noopener noreferrer">
-                  <img src="video3.jpg" alt="Video 3" />
-                </a>
-              </div>
-            </div>
-            {/* Repita este bloco para criar mais fileiras */}
-          </div>
-        </div>
 
               
-       {/* Exiba os pacientes recuperados como uma lista */}
-       <section className="fhir-data">
-       <h2>Lista de Pacientes para estudo</h2>
-       <ul>
-         {patients.map((patient) => (
-           <li key={patient.id}>
-             <strong>Nome:</strong> {patient.name?.[0]?.given?.[0]} {patient.name?.[0]?.family}<br />
-             <strong>Data de Nascimento:</strong> {patient.birthDate}<br />
-             <strong>Gênero:</strong> {patient.gender}<br />
-             <strong>ID do Paciente:</strong> {patient.id}
-           </li>
-         ))}
-       </ul>
-     </section>
-        {/* Rodapé estilizado */}
+       {/* Rodapé estilizado */}
         <footer className="footer">
           <p>&copy; 2023 Health Book. Todos os direitos reservados.</p>
         </footer>
       </main>
     </div>
+  
   );
 }   
 
