@@ -10,7 +10,7 @@ button {
   margin: 0;
   padding: 0;
   border: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', Nunito, 'Trebuchet MS', sans-serif;
 }
 
 /* App Container */
@@ -21,7 +21,7 @@ button {
 
 /* Sidebar */
 .sidebar {
-  width: 80px; /* Largura da barra lateral reduzida */
+  width: 100px; /* Largura da barra lateral reduzida */
   background-color: #132c4d;
   color: white;
   padding: 20px 10px; /* Reduzir o preenchimento vertical */
@@ -32,15 +32,16 @@ button {
 }
 
 .logo h2 {
-  font-size: 1rem; /* Tamanho da fonte reduzido */
-  margin-bottom: 10px; /* Reduzir a margem inferior */
+  font-size: 1.3rem; /* Tamanho da fonte reduzido */
+  margin-bottom: 18px; /* Reduzir a margem inferior */
+  padding: 11px;
 }
 
 .qr-code-button {
   background-color: #3f6ea4;
   color: white;
   border: none;
-  padding: 5px; /* Reduzir o preenchimento */
+  padding: 24px; /* Reduzir o preenchimento */
   border-radius: 5px;
   margin-bottom: 10px;
   cursor: pointer;
@@ -49,12 +50,37 @@ button {
 .icons {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 35px;
+}
+
+.hat-icon-button {
+  width: auto;
+  display: flex;
+  justify-content: space-around;
+  cursor: pointer;
+  background-color: #132c4d;
+}
+
+.forum-icon-button {
+  width: auto;
+  display: flex;
+  justify-content: space-around;
+  cursor: pointer;
+  background-color: #132c4d;
+}
+
+.search-icon-button {
+  width: auto;
+  display: flex;
+  justify-content: space-around;
+  cursor: pointer;
+  background-color: #132c4d;
 }
 
 .icon img {
-  width: 24px;
-  height: 24px;
+  padding-left: 24px;
+  width: 36px;
+  height: 36px;
 }
 
 /* Main Content */
@@ -72,7 +98,7 @@ button {
 }
 
 .header h1 {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
 }
 
 .search-bar {
@@ -84,6 +110,7 @@ button {
 }
 
 .action-buttons button {
+  width: auto;
   margin-left: 10px;
   padding: 5px 10px;
   background-color: #3f6ea4;
@@ -182,6 +209,11 @@ button {
 
 /* ... (seus estilos anteriores) ... */
 
+.fhir-data {
+  display: flex;
+
+}
+
 .footer {
   bottom: -20px; /* Começa fora da tela */
   left: 0;
@@ -217,6 +249,8 @@ hr {
   display: flex;
   align-items: center;
 }
+
+
 
 .forum .search-bar input[type='text'] {
   flex: 1;
@@ -370,44 +404,7 @@ hr {
   margin-bottom: 20px; /* Espaço maior abaixo do título */
 }
 
-/* Estilização para as fileiras de vídeos */
-.video-fileiras {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.video-fileira {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.video {
-  flex: 0 0 calc(31% - 20px); /* 3 vídeos com espaço entre eles */
-  position: relative;
-  cursor: pointer;
-  transition: transform 0.2s ease-in-out;
-}
-
 /* Ajusta o alinhamento do texto à esquerda */
 .quebra-pagina h2 {
   text-align: left;
-}
-
-/* Alinha os vídeos para preencher de ponta a ponta */
-.video:first-child {
-  margin-right: auto;
-}
-
-.video:last-child {
-  margin-left: auto;
-}
-
-/* Efeito de escala suave ao passar o mouse sobre os vídeos */
-.video:hover {
-  transform: scale(1.05);
 }
